@@ -4,33 +4,32 @@ using Services.Interfaces;
 
 namespace EF_MSSQL.Repositories;
 
-public class ProductRepository(AppDbContext context) : IProductRepository
+public class ProductRepository(AppDbContext db) : IProductRepository
 {
     public async Task<List<Product>> GetAllAsync() 
-        => await context.Products.AsNoTracking().ToListAsync();
+        => await db.Products.AsNoTracking().ToListAsync();
     public async Task<Product?> GetByIdAsync(Guid id) 
-        => await context.Products.FindAsync(id);
+        => await db.Products.FindAsync(id);
 
     public async Task AddAsync(Product product)
     {
-        await context.Products.AddAsync(product);
-        await context.SaveChangesAsync();
+        await db.Products.AddAsync(product);
+        await db.SaveChangesAsync();
     }
     
     public async Task UpdateAsync(Product product)
     {
-        context.Products.Update(product);
-        await context.SaveChangesAsync();
+        db.Products.Update(product);
+        await db.SaveChangesAsync();
     }
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var product = await context.Products.FindAsync(id);
-        if (product is null)
-            return false;
+        var product = await db.Products.FindAsync(id);
+        if (product is null) return false;
         
-        context.Products.Remove(product);
-        await context.SaveChangesAsync();
+        db.Products.Remove(product);
+        await db.SaveChangesAsync();
         return true;
     }
 }
