@@ -3,7 +3,7 @@ using Services.Interfaces;
 
 namespace Services;
 
-public class CustomerService(ICustomerRepository customerRepo)
+public class CustomerService(ICustomerRepository customerRepo) : ICustomerService
 {
     public async Task<List<Customer>> GetAllAsync() => await customerRepo.GetAllAsync();
 

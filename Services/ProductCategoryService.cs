@@ -3,7 +3,7 @@ using Services.Interfaces;
 
 namespace Services;
 
-public class ProductCategoryService(IProductCategoryRepository categoryRepo)
+public class ProductCategoryService(IProductCategoryRepository categoryRepo) : IProductCategoryService
 {
     public async Task<List<ProductCategory>> GetAllAsync() => await categoryRepo.GetAllAsync();
 
