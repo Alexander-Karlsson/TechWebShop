@@ -32,4 +32,12 @@ public class ProductRepository(AppDbContext db) : IProductRepository
         await db.SaveChangesAsync();
         return true;
     }
+
+    public async Task<List<Product>> FilterByName(string searchQuery)
+    {
+        return await db.Products
+            .AsNoTracking()
+            .Where(p => p.Name.Contains(searchQuery))
+            .ToListAsync();
+    }
 }

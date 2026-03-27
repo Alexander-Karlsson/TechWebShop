@@ -9,4 +9,5 @@ public interface IProductService
     Task AddAsync(Product product);
     Task UpdateAsync(Product product);
     Task<bool> DeleteAsync(Guid id);
+    Task<List<Product>> FilterByName(string searchQuery);
 }
