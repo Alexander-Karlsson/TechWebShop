@@ -24,7 +24,6 @@ public class ProductController(ProductService service) : ControllerBase
         
         return Ok(product);
     }
-
     
     [HttpGet("search")]
     public async Task<IActionResult> FilterQuery(string query)
@@ -34,7 +33,7 @@ public class ProductController(ProductService service) : ControllerBase
 
         return Ok(result);
     }
-
+    
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateProductDto dto)
     {
