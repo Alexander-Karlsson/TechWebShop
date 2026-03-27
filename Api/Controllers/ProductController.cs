@@ -1,5 +1,5 @@
-using Api.DTOs;
-using Entities;
+
+using Api.DTOs.Product;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 

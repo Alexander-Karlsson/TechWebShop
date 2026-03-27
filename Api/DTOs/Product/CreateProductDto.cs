@@ -1,4 +1,4 @@
-namespace Api.DTOs;
+namespace Api.DTOs.Product;
 
 public record CreateProductDto(
     string Name,
