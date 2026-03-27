@@ -1,3 +1,4 @@
+using Api.DTOs;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services;
@@ -32,5 +33,12 @@ public class ProductController(ProductService service) : ControllerBase
         if(!result.Any()) return NotFound("No products found.");
 
         return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateProductDto dto)
+    {
+        await service.AddAsync(dto.Name, dto.Description, dto.Price, dto.CategoryId);
+        return Created();
     }
 }
